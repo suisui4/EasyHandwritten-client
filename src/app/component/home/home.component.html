@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-6 col-md-3 mb-3" *ngFor="let item of judgeItems">
+      <div class="d-block text-decoration-none">
+        <div class="border p-3 rounded text-center" (click)="openImageUploadDialog(item.type, item.aiCode)" style="cursor: pointer;">
+          <img [src]="item.image" class="img-fluid rounded mb-2 img-size">
+          <h5 class="mb-1">{{ item.label }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 履歴 -->
+  <div class="row">
+    <div class="col-12 mb-3">
+      <div class="text-left">
+        <button class="btn btn-primary" (click)="openJudgeHistory()">過去の履歴</button>
+      </div>
+    </div>
+  </div>
+</div>

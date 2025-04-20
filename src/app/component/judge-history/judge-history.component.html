@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h2 class="text-center">判定履歴</h2>
+  
+  <div class="table-container mx-auto p-3 border rounded shadow bg-white">
+    <table class="table table-bordered table-striped text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>画像</th>
+          <th>分類</th>
+          <th>結果</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of history" (click)="onResult(item.id)" class="clickable-row">
+          <td>{{ item.id }}</td>
+          <td><img [src]="item.image" alt="Image" class="img-fluid rounded" style="width: 50px; height: 50px;"></td>
+          <td>{{ item.category }}</td>
+          <td><app-latex-viewer [latexCode]='item.result'></app-latex-viewer></td>
+          <td>
+            <mat-icon (click)="deleteHistory(item.id); $event.stopPropagation()" style="cursor: pointer;">more_horiz</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  
+    <!-- ページングのコントロール -->
+    <div class="pagination-controls">
+      <div class="d-flex justify-content-between">
+        <!-- ページサイズ変更 -->
+        <div class="page-size">
+          <label for="pageSize">表示件数：</label>
+          <select id="pageSize" [(ngModel)]="pageSize" (change)="changePageSize(pageSize)">
+            <option *ngFor="let size of pageOptions" [value]="size">{{ size }}件</option>
+          </select>
+        </div>
+  
+        <!-- ページ移動 -->
+        <div class="page-navigation">
+          <button (click)="prevPage()" [disabled]="page === 1" class="btn btn-primary">前のページ</button>
+          <span>ページ {{ page }}</span>
+          <button (click)="nextPage()" [disabled]="page * pageSize >= totalItems" class="btn btn-primary">次のページ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary mt-3" (click)="goBack()">戻る</button>
+</div>

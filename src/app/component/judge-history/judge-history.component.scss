@@ -1,0 +1,27 @@
+.table-container {
+    margin-top: 20px;
+    background-color: #fff;
+  }
+  
+  .table {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    vertical-align: middle;
+  }
+  
+  mat-icon {
+    color: #555;
+    &:hover {
+      color: #d9534f; // 削除時に赤くなる
+    }
+  }
+
+.img {
+    object-fit: cover;
+  }
+
+  .clickable-row {
+    cursor: pointer;
+  }

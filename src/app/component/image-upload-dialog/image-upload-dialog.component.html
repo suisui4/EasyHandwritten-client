@@ -1,0 +1,25 @@
+<h3 mat-dialog-title>【{{judgeName}}】 画像をアップロード</h3>
+<mat-dialog-content>
+  <!-- ドロップエリア -->
+  <div class="drop-area" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+    <p>ここに画像をアップロードしてください</p>
+  </div>
+
+  <!-- ファイル選択ボタン -->
+  <input type="file" (change)="onFileChange($event)" />
+
+  <!-- エラーメッセージ -->
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+  <!-- 選択された画像のプレビュー -->
+  <div *ngIf="selectedImage">
+    <h3>選択した画像</h3>
+    <img [src]="getImageSrc()" alt="選択した画像" width="100%" />
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <mat-spinner *ngIf="isLoading" [diameter]="50" color="primary"></mat-spinner>
+  <button class="btn btn-primary mt-3" (click)="onJudgeImageAI()"[disabled]="!selectedImage">読み込み開始</button>
+  <button class="btn btn-secondary mt-3" (click)="closeDialog()">閉じる</button>
+</mat-dialog-actions>

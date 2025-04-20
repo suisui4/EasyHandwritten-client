@@ -3,6 +3,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "sourceMap": true,
     "outDir": "./out-tsc/app",
     "types": [
       "node"
@@ -10,10 +11,12 @@
   },
   "files": [
     "src/main.ts",
-    "src/main.server.ts",
-    "server.ts"
   ],
   "include": [
     "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
   ]
 }
